@@ -121,6 +121,30 @@
       text-align: right;
     }
     .quotes-grid { display: grid; gap: 14px; }
+    figure {
+      margin: 24px 0;
+      text-align: center;
+    }
+    figure.hero-img img {
+      width: min(100%, 520px);
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+      margin-top: 16px;
+    }
+    figure.section-img img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    }
+    figcaption {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
     ul {
       margin: 0 0 14px 2em;
       padding: 0;
@@ -145,6 +169,10 @@
     <header>
       <h1>都江堰：千年工程与顺势而为</h1>
       <p class="subtitle">李冰 · 秦昭王时期 · 整理日期：2026年06月</p>
+      <figure class="hero-img">
+        <img src="images/dujiangyan/cover.png" alt="都江堰 · 岷江分流全景" loading="lazy" />
+        <figcaption>都江堰 · 岷江鱼嘴分流</figcaption>
+      </figure>
     </header>
 
     <section id="intro">
@@ -156,6 +184,10 @@
 
     <section id="structure">
       <h2>二、三大主体工程</h2>
+      <figure class="section-img">
+        <img src="images/dujiangyan/structure.png" alt="都江堰三大工程示意图：鱼嘴、飞沙堰、宝瓶口" loading="lazy" />
+        <figcaption>鱼嘴 · 飞沙堰 · 宝瓶口 — 三大主体工程示意</figcaption>
+      </figure>
 
       <p class="key-title">【鱼嘴 — 分流】</p>
       <p>鱼嘴是江中一道形如鱼嘴的分水堤，将岷江分为<strong>内江</strong>（引水灌溉）与<strong>外江</strong>（排洪）。内江占约四成水量，外江占约六成。洪水期外江承担更多泄洪任务，枯水期则保证内江有足够引水——<strong>不用机械，只靠地形与比例，实现自动调节</strong>。</p>
@@ -165,6 +197,10 @@
 
       <p class="key-title">【宝瓶口 — 控流】</p>
       <p>宝瓶口是人工开凿于玉垒山的一处狭窄进水口，形如瓶口，<strong>精确控制进入成都平原的水量</strong>。李冰以「积薪烧岩、泼水骤冷」之法开山，在工具简陋的古代完成这一壮举。宝瓶口一旦形成，便像水龙头一样，让成都平原旱涝可控。</p>
+      <figure class="section-img">
+        <img src="images/dujiangyan/baopingkou.png" alt="宝瓶口 · 玉垒山进水口" loading="lazy" />
+        <figcaption>宝瓶口 · 控引内江清水入成都平原</figcaption>
+      </figure>
     </section>
 
     <section id="philosophy">
