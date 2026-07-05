@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>《软件工程3.0》读书要点</title>
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --paper: #fffef9;
+      --text: #1a2332;
+      --muted: #5a6578;
+      --accent: #1e4d8c;
+      --accent-light: #e8f0fa;
+      --gold: #2d6a9f;
+      --border: #cdd8e8;
+      --quote-bg: #f2f6fb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Georgia", "Songti SC", "SimSun", serif;
+      background: linear-gradient(180deg, #dce6f2 0%, var(--bg) 120px);
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 32px 20px 64px; }
+    .nav-back { margin-bottom: 16px; }
+    .nav-back a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+    .nav-back a:hover { color: var(--accent); }
+    header {
+      text-align: center;
+      padding: 48px 24px 36px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(30,77,140,.08);
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    }
+    h1 { font-size: 1.85rem; color: var(--accent); letter-spacing: .06em; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: .95rem; margin-top: 6px; }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(30,77,140,.04);
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: var(--accent);
+      border-left: 4px solid var(--gold);
+      padding-left: 14px;
+      margin-bottom: 20px;
+    }
+    p { margin-bottom: 14px; text-indent: 2em; text-align: justify; }
+    strong { color: var(--accent); font-weight: 700; }
+    .key-title {
+      font-weight: 700; color: var(--text); text-indent: 0;
+      margin: 18px 0 8px; padding: 8px 12px;
+      background: var(--accent-light); border-radius: 6px;
+      display: inline-block;
+    }
+    ul { margin: 0 0 14px 2em; }
+    li { margin-bottom: 8px; line-height: 1.7; }
+    blockquote {
+      margin: 16px 0 16px 1.5em; padding: 16px 20px;
+      background: var(--quote-bg); border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0; font-style: italic; color: #2a3548; text-indent: 0;
+    }
+    blockquote .source {
+      display: block; margin-top: 10px; font-size: .88rem;
+      font-style: normal; color: var(--muted); text-align: right;
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .92rem;
+    }
+    .compare-table th, .compare-table td {
+      border: 1px solid var(--border); padding: 10px 12px; text-align: left;
+    }
+    .compare-table th { background: var(--accent-light); color: var(--accent); }
+    figure { margin: 24px 0; text-align: center; }
+    figure.hero-img img {
+      width: min(100%, 520px); height: auto; object-fit: cover;
+      border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.12); margin-top: 16px;
+    }
+    figure.section-img img {
+      width: 100%; max-height: 360px; object-fit: cover;
+      border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    }
+    figcaption { font-size: .82rem; color: var(--muted); margin-top: 8px; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.4rem; }
+      section { padding: 20px 18px; }
+      .compare-table { font-size: .82rem; }
+    }
+    footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 24px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="nav-back"><a href="index.html">← 返回读书笔记目录</a></p>
+    <header>
+      <h1>《软件工程3.0：大模型驱动的研发新范式》</h1>
+      <p class="subtitle">朱少民 · 王千祥 · 读书要点 · 整理日期：2026年06月</p>
+      <figure class="hero-img">
+        <img src="images/se30/cover.png" alt="软件工程3.0 · 大模型驱动研发" loading="lazy" />
+        <figcaption>软件工程3.0 · 人机协同研发新范式</figcaption>
+      </figure>
+    </header>
+
+    <section id="intro">
+      <h2>一、本书在讲什么？</h2>
+      <p>本书系统梳理软件工程从 <strong>1.0 → 2.0 → 3.0</strong> 的演进，提出以大模型为核心驱动力的<strong>研发新范式</strong>。核心论断是：AI 不再只是「辅助工具」，而是改变流程、组织与交付方式的<strong>核心力量</strong>——从过去的「软件研发 + AI」转向「<strong>AI + 软件研发</strong>」。</p>
+      <p>全书四步结构：<strong>定义 SE 3.0 → 实施策略与核心能力 → 全生命周期实战 → 未来展望</strong>。覆盖提示工程、RAG、智能体、数据治理、模型工程、安全治理，以及需求、设计、编程、测试、运维各环节的 LLM 驱动实践。</p>
+    </section>
+
+    <section id="evolution">
+      <h2>二、三个时代的演进</h2>
+      <table class="compare-table">
+        <tr>
+          <th>时代</th>
+          <th>代表特征</th>
+          <th>研发范式</th>
+        </tr>
+        <tr>
+          <td><strong>SE 1.0</strong></td>
+          <td>瀑布模型、结构化开发</td>
+          <td>线性串行，需求→设计→编码→测试→交付</td>
+        </tr>
+        <tr>
+          <td><strong>SE 2.0</strong></td>
+          <td>敏捷、DevOps、SaaS</td>
+          <td>持续集成/交付，人主导、工具辅助</td>
+        </tr>
+        <tr>
+          <td><strong>SE 3.0</strong></td>
+          <td>大模型、智能体、SaaM</td>
+          <td><strong>模型驱动研发、模型驱动运维</strong>，人机协同</td>
+        </tr>
+      </table>
+      <p>软件形态也在迁移：产品 → SaaS（软件即服务）→ <strong>SaaM（Software as a Model，软件即模型）</strong>。软件不再只是确定性程序，而是<strong>程序与模型融合</strong>，从延伸计算能力迈向延伸思维能力。</p>
+      <blockquote>SE 3.0 不是对 1.0/2.0 的割裂式颠覆，而是在 50 余年软件工程积累之上的<strong>升华与融合</strong>。<span class="source">—— 书中观点</span></blockquote>
+    </section>
+
+    <section id="paradigm">
+      <h2>三、核心范式：模型驱动 + 人机协同</h2>
+
+      <p class="key-title">【从「AI 赋能」到「AI 驱动」】</p>
+      <p>「AI 赋能研发」几十年前就有，但 AI 只是提效手段，<strong>不改变流程与组织</strong>。SE 3.0 的本质变化是：大模型成为<strong>核心力量</strong>，重塑需求分析、设计、编码、测试、运维的全链路，研发从「线性串行」走向「<strong>网络协同</strong>」，从「人工控制」走向「<strong>人机共治</strong>」。</p>
+
+      <p class="key-title">【三种人机关系】</p>
+      <ul>
+        <li><strong>能力强</strong>：AI 智能体是助手，一人可拥有扮演架构师、测试、开发等多角色的多个智能体</li>
+        <li><strong>能力中</strong>：与 AI 构成<strong>伙伴关系</strong>，结对设计、结对编程、结对测试</li>
+        <li><strong>能力弱</strong>：AI 智能体成为<strong>师傅/教练/顾问</strong>，指导人类工程师完成任务</li>
+      </ul>
+
+      <p class="key-title">【开发者角色转型】</p>
+      <p>从「代码编写者」转向<strong>价值引导者、系统治理者</strong>。人类的核心优势在于：战略决策、价值判断、伦理监管、领导力与创造力；大模型擅长处理不确定性、大规模输入与内容生成，但<strong>不具备真正的价值取舍能力</strong>，需人把控。</p>
+    </section>
+
+    <section id="capabilities">
+      <h2>四、六大核心能力</h2>
+      <figure class="section-img">
+        <img src="images/se30/capabilities.png" alt="软件工程3.0六大核心能力" loading="lazy" />
+        <figcaption>SE 3.0 核心能力体系</figcaption>
+      </figure>
+
+      <p class="key-title">【1. 提示工程】</p>
+      <p>设计与优化提示词，引导大模型输出。书中介绍 <strong>ICIO 框架</strong>：指令（Instruction）、上下文（Context）、输入数据（Input Data）、输出指示（Output Indicator）。提示工程是 SE 3.0 中<strong>新出现的一项工程活动</strong>，直接影响模型可控性与输出质量。</p>
+
+      <p class="key-title">【2. RAG（检索增强生成）】</p>
+      <p>将企业私有知识库与 LLM 结合，解决「幻觉」与知识过时问题。多数企业应在开源/商业基础模型之上，通过 <strong>RAG + 领域语料</strong> 构建贴合业务的研发大模型，而非从零训练基础模型。</p>
+
+      <p class="key-title">【3. 智能体（Agent）技术】</p>
+      <p>智能体可感知环境、分解任务、调用工具、协同工作。研发场景可出现：需求智能体、设计智能体、编程智能体、测试智能体、运维智能体——形成<strong>多智能体协作</strong>的虚拟团队，「超级个体」成为可能。</p>
+
+      <p class="key-title">【4. 数据治理】</p>
+      <p>「充分重视数据的价值，从数据内容和格式的定义开始。」高质量的需求、设计、代码、测试数据是模型能力的<strong>燃料</strong>，需建立采集、管理、治理体系。</p>
+
+      <p class="key-title">【5. 模型工程】</p>
+      <p>包括模型选型、微调/精调、评测、部署与运维。企业需训练或适配<strong>代码大模型、测试大模型</strong>等领域模型，并持续优化算力消耗与性能。</p>
+
+      <p class="key-title">【6. 安全治理】</p>
+      <p>应对概率性输出、黑盒决策、数据偏见与算法伦理风险。强监管行业（如金融）优先<strong>私有化部署</strong>；需建立质量评估、风险管控与责任边界机制。</p>
+    </section>
+
+    <section id="strategy">
+      <h2>五、实施策略与路线图</h2>
+      <p>从 SE 2.0 升级到 SE 3.0 是<strong>数智化转型</strong>，需分步推进，因地制宜：</p>
+      <ul>
+        <li><strong>目标导向</strong>：设定可量化目标（代码采纳率、测试用例采纳率、周期缩短、缺陷率下降等）</li>
+        <li><strong>分阶段实施</strong>：从代码补全等小范围试点 → 测试生成 → 覆盖全生命周期</li>
+        <li><strong>队伍建设</strong>：引进 AI 人才 + 培训现有团队，成立 SE 3.0 专项推进组</li>
+        <li><strong>激励创新</strong>：鼓励实践新范式，设立应用创新奖励机制</li>
+        <li><strong>外部合作</strong>：与高校、科研机构、行业伙伴共建</li>
+        <li><strong>持续改进</strong>：基于数据评估大模型真实性能与使用情况，迭代优化</li>
+      </ul>
+      <p>技术落地路径：<strong>指令微调 → 上下文学习 → RAG → 提示工程 → 智能体 → AI/LLM 平台</strong>，在需求、设计、UI、编程、测试、运维各环节逐步落实。</p>
+    </section>
+
+    <section id="lifecycle">
+      <h2>六、全生命周期如何被重塑？</h2>
+
+      <p class="key-title">【需求与设计】</p>
+      <p>LLM 驱动需求定义与评审、架构设计、UI 生成。可从自然语言更接近代码，但<strong>设计依旧需要，架构更重要</strong>——大模型辅助而非取代系统思维。</p>
+
+      <p class="key-title">【结对编程】</p>
+      <p><strong>人机结对编程</strong>将成为常态。大模型可完成代码生成、补全、解释、转换、评审；效率超越单人编程。过去难以落地的人人结对，可能被更易推广的人机结对替代。</p>
+
+      <p class="key-title">【测试智能化】</p>
+      <p>从验收标准生成 → 测试用例生成 → 测试脚本生成，实现<strong>真正的自动化测试</strong>（而非仅执行自动化）。模型驱动测试（MDT）成为新方向。</p>
+
+      <p class="key-title">【运维】</p>
+      <p>LLM 驱动日志分析、故障定位、根因分析；运维智能体可自动执行灾难恢复等复杂任务，实现<strong>模型驱动运维（ML-DevOps）</strong>。</p>
+
+      <p class="key-title">【流程再造】</p>
+      <p>SE 3.0 中设计、构建、集成、验证的边界更加模糊，流程<strong>高度自动化、持续融合</strong>。LLM 缩短了从「问题到答案」的路径——甚至可从业务需求更接近代码，但需警惕跳过设计带来的质量风险。</p>
+    </section>
+
+    <section id="principles">
+      <h2>七、关键开发原则（实践总结）</h2>
+      <ul>
+        <li><strong>尽早尽快把 LLM 用起来</strong>，实践出真知</li>
+        <li><strong>重视数据</strong>，从定义、采集到治理全链路建设</li>
+        <li><strong>加强提示工程</strong>，善用提示词引导大模型</li>
+        <li><strong>不抛弃 SE 1.0/2.0</strong>，在既有工程能力之上构建 SE 3.0</li>
+        <li>全生命周期均可借助大模型驱动，<strong>持续提升效率与质量</strong></li>
+        <li><strong>持续重构组织与流程</strong>，适应超级个体与多智能体协作</li>
+      </ul>
+    </section>
+
+    <section id="quotes">
+      <h2>八、关键语句摘录</h2>
+      <blockquote><strong>模型驱动研发、模型驱动运维</strong>—— SE 3.0 的核心范式。<span class="source">—— 朱少民</span></blockquote>
+      <blockquote>从「软件研发 + AI」向「<strong>AI + 软件研发</strong>」转变。<span class="source">—— 书中核心论断</span></blockquote>
+      <blockquote>软件工程 3.0 的特征是「<strong>软件即模型</strong>」（SaaM），研发过程就是人与计算机之间的自然交互过程。<span class="source">—— 本书定义</span></blockquote>
+      <blockquote>从代码编写者转变为<strong>价值引导者</strong>，从问题解决者升格为<strong>系统治理者</strong>。<span class="source">—— 杨善林 推荐序</span></blockquote>
+      <blockquote>人机结对编程的效率一定超过单个程序员的效率。<span class="source">—— 书中实践观点</span></blockquote>
+    </section>
+
+    <section id="review">
+      <h2>九、学习心得</h2>
+      <p>作为一线研发人员读这本书，最大的收获是<strong>框架感</strong>：SE 3.0 不是「多了一个 Copilot」，而是一套从范式、能力到落地路径的完整体系。提示工程、RAG、智能体不是孤立技巧，而是需要与<strong>数据治理、模型工程、安全治理</strong>协同建设的基础设施。</p>
+      <p>书中强调的「<strong>分阶段、因地制宜</strong>」尤其务实——不必等待完美的大模型，从代码补全、测试用例生成等<strong>见效快</strong>的场景切入，逐步扩展。同时，「设计依旧需要、架构更重要」是对当前「自然语言直出代码」热潮的<strong>冷静提醒</strong>：效率提升不能以牺牲系统质量为代价。</p>
+      <p>对 AGV/WES 等复杂系统研发而言，RAG 绑定领域知识库、多智能体分工（需求/架构/测试/运维）、人机结对开发与<strong>模型驱动测试</strong>，都是可立即探索的方向。SE 3.0 时代，核心竞争力或许不再是「写代码的速度」，而是<strong>提问能力、架构判断、规则设计，以及驾驭 AI 智能体的能力</strong>。</p>
+    </section>
+
+    <footer>—— 读书札记 · 完 ——</footer>
+  </div>
+</body>
+</html>
