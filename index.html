@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>《飘》读书札记</title>
+  <title>读书笔记</title>
   <style>
     :root {
-      --bg: #faf7f2;
+      --bg: #f5f3ef;
       --paper: #fffef9;
       --text: #2c2419;
       --muted: #6b5d4f;
-      --accent: #8b2942;
-      --accent-light: #f5e6ea;
-      --gold: #b8860b;
-      --border: #e8dfd0;
-      --quote-bg: #f9f3eb;
+      --accent: #3d5a4a;
+      --accent-light: #e8f0eb;
+      --gold: #8b6914;
+      --border: #e0d8cc;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Georgia", "Songti SC", "SimSun", serif;
-      background: linear-gradient(180deg, #efe6d8 0%, var(--bg) 120px);
+      background: linear-gradient(180deg, #e8e2d8 0%, var(--bg) 160px);
       color: var(--text);
-      line-height: 1.85;
+      line-height: 1.75;
       font-size: 17px;
+      min-height: 100vh;
     }
     .wrap {
-      max-width: 820px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 32px 20px 64px;
+      padding: 40px 20px 64px;
     }
     header {
       text-align: center;
-      padding: 48px 24px 36px;
+      padding: 48px 24px 40px;
       background: var(--paper);
       border: 1px solid var(--border);
       border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(44,36,25,.08);
+      box-shadow: 0 8px 32px rgba(44,36,25,.07);
       margin-bottom: 36px;
       position: relative;
       overflow: hidden;
@@ -48,120 +48,67 @@
       background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
     }
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: var(--accent);
-      letter-spacing: .12em;
+      letter-spacing: .2em;
       font-weight: 700;
-      margin-bottom: 8px;
     }
     .subtitle {
       color: var(--muted);
       font-size: .95rem;
-      margin-top: 6px;
-    }
-    .en-title {
-      font-style: italic;
-      color: var(--gold);
-      font-size: 1rem;
       margin-top: 12px;
     }
-    section {
+    .note-list {
+      display: grid;
+      gap: 20px;
+    }
+    .note-card {
+      display: block;
       background: var(--paper);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 28px 32px;
-      margin-bottom: 28px;
+      padding: 24px 28px;
+      text-decoration: none;
+      color: inherit;
       box-shadow: 0 2px 12px rgba(44,36,25,.04);
+      transition: transform .15s, box-shadow .15s, border-color .15s;
     }
-    h2 {
-      font-size: 1.35rem;
+    .note-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(44,36,25,.1);
+      border-color: var(--accent);
+    }
+    .note-card h2 {
+      font-size: 1.25rem;
       color: var(--accent);
-      border-left: 4px solid var(--gold);
-      padding-left: 14px;
-      margin-bottom: 20px;
-    }
-    p {
-      margin-bottom: 14px;
-      text-indent: 2em;
-      text-align: justify;
-    }
-    p.no-indent { text-indent: 0; }
-    strong, .highlight {
-      color: var(--accent);
+      margin-bottom: 8px;
       font-weight: 700;
     }
-    .key-title {
-      font-weight: 700;
-      color: var(--text);
-      text-indent: 0;
-      margin: 18px 0 8px;
-      padding: 8px 12px;
-      background: var(--accent-light);
-      border-radius: 6px;
-      display: inline-block;
-    }
-    blockquote {
-      margin: 16px 0 16px 1.5em;
-      padding: 16px 20px;
-      background: var(--quote-bg);
-      border-left: 4px solid var(--gold);
-      border-radius: 0 8px 8px 0;
-      font-style: italic;
-      color: #4a3f35;
-      text-indent: 0;
-    }
-    blockquote .source {
-      display: block;
-      margin-top: 10px;
+    .note-card .meta {
       font-size: .88rem;
-      font-style: normal;
       color: var(--muted);
-      text-align: right;
+      margin-bottom: 10px;
     }
-    .quotes-grid {
-      display: grid;
-      gap: 14px;
+    .note-card .desc {
+      font-size: .95rem;
+      color: #4a3f35;
+      line-height: 1.7;
+      text-indent: 0;
     }
-    figure {
-      margin: 24px 0;
-      text-align: center;
-    }
-    figure.hero-img img {
-      width: min(100%, 480px);
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(0,0,0,.15);
-      margin-top: 16px;
-    }
-    figure.section-img img {
-      width: 100%;
-      max-height: 320px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,.1);
-    }
-    figcaption {
-      font-size: .82rem;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-    .img-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 20px 0;
-    }
-    @media (max-width: 600px) {
-      .img-row { grid-template-columns: 1fr; }
-      h1 { font-size: 1.6rem; }
-      section { padding: 20px 18px; }
+    .tag {
+      display: inline-block;
+      font-size: .78rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--accent-light);
+      color: var(--accent);
+      margin-right: 6px;
     }
     footer {
       text-align: center;
       color: var(--muted);
-      font-size: .9rem;
-      padding: 24px;
+      font-size: .88rem;
+      padding: 32px 0 0;
       font-style: italic;
     }
   </style>
@@ -169,78 +116,33 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>《飘》读书札记</h1>
-      <p class="en-title">Gone with the Wind</p>
-      <p class="subtitle">玛格丽特·米切尔 · 整理日期：2026年06月</p>
-      <figure class="hero-img">
-          <img src="《飘》读书札记-插图/cover.jpg" alt="《飘》· 读书札记" loading="lazy" />
-          <figcaption>《飘》· 读书札记</figcaption>
-        </figure>
+      <h1>读书笔记</h1>
+      <p class="subtitle">阅读 · 记录 · 思考</p>
     </header>
 
-    <section id="intro">
-      <h2>一、内容简介</h2>
-      <p>《飘》（又译<strong>《乱世佳人》</strong>）是美国作家玛格丽特·米切尔的代表作，以<strong>美国南北战争（1861—1865）及战后重建时期</strong>为背景，通过塔拉庄园小姐<strong>斯嘉丽·奥哈拉</strong>的人生轨迹，写出一个旧秩序崩塌、新秩序尚未建立的动荡时代，以及个体在战争、贫困与情感纠葛中的挣扎与成长。</p>
-      <p>故事始于美国南方种植园文明的鼎盛时期。斯嘉丽年轻貌美，却得不到心上人艾希礼的回应，一怒之下嫁给查尔斯，不久成为寡妇。战争爆发后，她历经<strong>亚特兰大陷落、塔拉庄园被毁、母亲病逝、父亲精神崩溃</strong>等一连串打击，以惊人的韧性撑起全家生计，并两次为保住庄园而嫁人。</p>
-      <div class="img-row"><figure class="section-img">
-          <img src="《飘》读书札记-插图/plantation.jpg" alt="塔拉庄园 · 红土地" loading="lazy" />
-          <figcaption>塔拉庄园 · 红土地</figcaption>
-        </figure><figure class="section-img">
-          <img src="《飘》读书札记-插图/civilwar.jpg" alt="南北战争 · 旧南方消逝" loading="lazy" />
-          <figcaption>南北战争 · 旧南方消逝</figcaption>
-        </figure></div>
-      <p>战后，斯嘉丽在亚特兰大经商致富，成为那个时代少有的独立女性；她与<strong>白瑞德</strong>的爱情从试探、结合到最终破裂。贯穿全书的还有对<strong>「土地」</strong>的执念——塔拉庄园不仅是财产，更是她精神最后的归宿。小说结尾，失去女儿、失去瑞德之后，斯嘉丽在悲痛中仍对自己说：</p>
-      <blockquote>「明天，我要想办法把他找回来……<strong>毕竟，明天又是新的一天。</strong>」<span class="source">——斯嘉丽·奥哈拉</span></blockquote>
-    </section>
+    <div class="note-list">
+      <a class="note-card" href="dujiangyan.html">
+        <h2>《都江堰：千年工程与顺势而为》</h2>
+        <p class="meta">
+          <span class="tag">历史</span>
+          <span class="tag">工程</span>
+          整理日期：2026年06月
+        </p>
+        <p class="desc">李冰父子修建的都江堰，两千余年来滋养成都平原。以「因势利导、顺势而为」的智慧，将洪水化为灌溉之利——一部写在山水之间的无坝治水史诗。</p>
+      </a>
 
-    <section id="key">
-      <h2>二、关键语句与情节描述</h2>
+      <a class="note-card" href="piao.html">
+        <h2>《飘》读书札记</h2>
+        <p class="meta">
+          <span class="tag">小说</span>
+          <span class="tag">美国文学</span>
+          玛格丽特·米切尔 · 2026年06月
+        </p>
+        <p class="desc">以南北战争为背景，写斯嘉丽在时代洪流中的挣扎与成长。旧南方文明「飘」逝，唯有土地与「明天又是新的一天」的生命力长存。</p>
+      </a>
+    </div>
 
-      <p class="key-title">【土地是唯一的永恒】</p>
-      <p>杰拉尔德·奥哈拉对女儿说，世界上<strong>唯有土地值得为之劳作、战斗乃至牺牲</strong>，因为只有土地历久长存。这句话奠定了全书的精神底色——当文明、爱情、名誉都可「飘」逝，<strong>土地与家园仍是最后的依靠</strong>。</p>
-
-      <p class="key-title">【文明的消逝】</p>
-      <p>书名 <em>Gone with the Wind</em> 意指旧南方优雅而残酷的种植园文明，<strong>如被飓风扫过般一去不返</strong>。亚特兰大大火、投降、重建时期的掠夺，都是这一「飘逝」的具体写照。</p>
-
-      <p class="key-title">【斯嘉丽的转变】</p>
-      <p>她从一个只会招蜂引蝶的庄园小姐，变成<strong>亲手下地干活、杀牛、做生意</strong>的女人。关键转折并非某一场战役，而是饥饿与责任——</p>
-      <blockquote><strong>「我不能想这些，我现在不能想。我以后会想，等我能承受的时候。」</strong></blockquote>
-
-      <p class="key-title">【白瑞德的清醒】</p>
-      <p>瑞德看透战争的愚蠢与旧道德的虚伪，以投机者的身份在乱世中生存，却将<strong>最深沉的温柔</strong>给了斯嘉丽和女儿邦妮。他的离开，是全书<strong>最沉痛的情感收束</strong>。</p>
-
-      <p class="key-title">【艾希礼的象征】</p>
-      <p>艾希礼代表旧南方的理想与软弱——美好、文雅，却无法适应新时代。斯嘉丽对他长达多年的迷恋，本质是<strong>对逝去时光的眷恋，而非真实的爱</strong>。</p>
-    </section>
-
-    <section id="quotes">
-      <h2>三、精彩语句摘录</h2>
-      <div class="quotes-grid">
-        <blockquote><strong>毕竟，明天又是新的一天。</strong><span class="source">——斯嘉丽·奥哈拉（小说结尾）</span></blockquote>
-        <blockquote><strong>土地是唯一值得为之付出生命的东西，因为土地是唯一长存的东西。</strong><span class="source">——杰拉尔德·奥哈拉</span></blockquote>
-        <blockquote><strong>我从来没有耐心去捡那些碎玻璃，如果曾经破碎过，就让它永远碎下去。</strong><span class="source">——白瑞德·巴特勒</span></blockquote>
-        <blockquote>所有属于那个旧时代的、好的坏的、光荣的与可耻的，<strong>都已随风而逝</strong>。<span class="source">——叙述者</span></blockquote>
-        <blockquote>生活没有义务要给我们所期望的，<strong>我们只能拿它给我们的，并从中尽量做出最好的来</strong>。<span class="source">——斯嘉丽·奥哈拉</span></blockquote>
-        <blockquote>她知道自己对塔拉的爱，<strong>胜过爱任何一个男人</strong>。<span class="source">——叙述者</span></blockquote>
-        <blockquote><strong>坦白说，亲爱的，我一点也不在乎。</strong><span class="source">——白瑞德·巴特勒</span></blockquote>
-        <blockquote><strong>我不能想这些，我现在不能想。我以后会想，等我能承受的时候。</strong><span class="source">——斯嘉丽·奥哈拉</span></blockquote>
-      </div>
-    </section>
-
-    <section id="review">
-      <h2>四、读后感</h2>
-      <figure class="section-img">
-          <img src="《飘》读书札记-插图/sunset.jpg" alt="毕竟，明天又是新的一天" loading="lazy" />
-          <figcaption>毕竟，明天又是新的一天</figcaption>
-        </figure>
-      <p>读《飘》，首先被震动的不是爱情，而是<strong>时代碾压个体时的那种无力与顽强</strong>。南北战争在教科书里往往只是一段历史，在米切尔笔下却化为饥饿、尘土、焦土和一张张失去光彩的脸。斯嘉丽之所以令人难忘，并非因为她完美，恰恰相反——她自私、虚荣、有时冷酷，但在废墟中她从不肯真正倒下。这种<strong>「活下去再说」</strong>的本能，既粗粝，又真实。</p>
-      <p>白瑞德是书中最复杂的人物。他玩世不恭，却最早看清战争的本质；他看似只爱自己，却把最深的希望寄托在斯嘉丽和邦妮身上。当他终于说出<strong>「我一点也不在乎」</strong>并转身离去时，读者才会明白：不是他从未在乎，而是在乎太久、太深，直到心被磨碎。爱情在此不是童话，而是<strong>两个强者之间的消耗与错过</strong>。</p>
-      <p>艾希礼与塔拉形成对照：一个代表回不去的过去，一个代表必须守住的现在。斯嘉丽对艾希礼的迷恋，其实是整个南方对旧梦的迷恋；当她最终认清这一点时，时代也已将她推得太远——瑞德已不在原地等候。这或许是全书最深的悲剧：<strong>人总是在失去之后，才学会看清什么真正重要</strong>。</p>
-      <p>小说结尾那句<strong>「明天又是新的一天」</strong>，常被当作励志名言，但若联系上下文，它更像一种带伤的前行——不是胜利者的宣言，而是跌倒者掸去尘土、强迫自己对未来仍抱希望。在文明「飘」逝的年代，这种<strong>不肯向命运彻底低头的生命力</strong>，或许正是《飘》历经近一个世纪仍被反复阅读的原因。</p>
-      <p>合上书，塔拉庄园的红土地仍在眼前。战争会结束，爱情会冷却，但人如何面对失去、如何与土地和记忆相处，仍是每一代读者要回答的问题。《飘》写的不仅是一个女人的史诗，更是一个国家在断裂与重建中，所有普通人必须完成的——<strong>从「飘」到「留」、从幻梦到现实的艰难旅程</strong>。</p>
-    </section>
-
-    <footer>—— 读书札记 · 完 ——</footer>
+    <footer>—— 持续更新中 ——</footer>
   </div>
 </body>
 </html>
