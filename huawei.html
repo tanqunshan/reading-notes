@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>《华为项目管理之道》读书要点</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --paper: #fffef9;
+      --text: #1c2430;
+      --muted: #5c6573;
+      --accent: #c7000b;
+      --accent-dark: #8b0000;
+      --accent-light: #fde8ea;
+      --gold: #1a3a6e;
+      --border: #dde2ea;
+      --quote-bg: #f5f7fb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Georgia", "Songti SC", "SimSun", serif;
+      background: linear-gradient(180deg, #e8ebf0 0%, var(--bg) 120px);
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 32px 20px 64px; }
+    .nav-back { margin-bottom: 16px; }
+    .nav-back a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+    .nav-back a:hover { color: var(--accent); }
+    header {
+      text-align: center;
+      padding: 48px 24px 36px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(26,58,110,.08);
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    }
+    .book-badge {
+      display: inline-block;
+      font-size: .82rem;
+      letter-spacing: .12em;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      background: var(--accent-light);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 1.75rem; color: var(--gold); letter-spacing: .06em; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: .95rem; margin-top: 6px; }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(26,58,110,.04);
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: var(--gold);
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+      margin-bottom: 20px;
+    }
+    h3 { font-size: 1.05rem; color: var(--text); margin: 18px 0 10px; font-weight: 700; }
+    p { margin-bottom: 14px; text-indent: 2em; text-align: justify; }
+    strong { color: var(--accent-dark); font-weight: 700; }
+    .key-title {
+      font-weight: 700; color: var(--text); text-indent: 0;
+      margin: 18px 0 8px; padding: 8px 12px;
+      background: var(--accent-light); border-radius: 6px;
+      display: inline-block;
+    }
+    ul { margin: 0 0 14px 2em; }
+    li { margin-bottom: 8px; line-height: 1.7; }
+    blockquote {
+      margin: 16px 0 16px 1.5em; padding: 16px 20px;
+      background: var(--quote-bg); border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0; font-style: italic; color: #2a3548; text-indent: 0;
+    }
+    blockquote .source {
+      display: block; margin-top: 10px; font-size: .88rem;
+      font-style: normal; color: var(--muted); text-align: right;
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .92rem;
+    }
+    .compare-table th, .compare-table td {
+      border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top;
+    }
+    .compare-table th { background: var(--accent-light); color: var(--accent-dark); }
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .chapter-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: #fafbfc;
+    }
+    .chapter-card h4 { color: var(--gold); font-size: .98rem; margin-bottom: 6px; }
+    .chapter-card p { text-indent: 0; margin: 0; font-size: .88rem; color: #4a5568; }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .stat-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+      background: #fafbfc;
+    }
+    .stat-card .num { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .stat-card .label { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.35rem; }
+      section { padding: 20px 18px; }
+      .compare-table { font-size: .82rem; }
+    }
+    footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 24px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="nav-back"><a href="index.html">← 返回读书笔记目录</a></p>
+    <header>
+      <div class="book-badge">华为项目管理能力中心 · 2024</div>
+      <h1>《华为项目管理之道》</h1>
+      <p class="subtitle">30 年实践总结 · 根能力 · 八大篇章 · 整理日期：2026年07月</p>
+    </header>
+
+    <section id="intro">
+      <h2>一、本书在讲什么？</h2>
+      <p>本书由<strong>华为项目管理能力中心</strong>出品，系统总结华为 30 多年来在全球复杂交付场景中积累的项目管理实践。项目管理能力被华为视为<strong>「根能力」</strong>——不是辅助职能，而是业务竞争力的核心法宝之一。</p>
+      <p>书中「道」有三层含义：</p>
+      <ul>
+        <li><strong>道路之道</strong>：华为项目管理从专业化到体系化、数字化、价值化的演进历程</li>
+        <li><strong>得道之道</strong>：吸收 PMBOK 等国际理论，结合全球交付实践，形成华为服务项目管理方法论与文化</li>
+        <li><strong>共发展之道</strong>：与客户、伙伴、同行分享最佳实践，促进行业共同进步</li>
+      </ul>
+      <blockquote>项目管理的本质是实现战略落地。项目不是单纯完成任务，而是通过每个环节推动公司整体目标实现。<span class="source">—— 读书提炼</span></blockquote>
+    </section>
+
+    <section id="chapters">
+      <h2>二、八大篇章概览</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card"><h4>第1章 发展之道</h4><p>项目管理 1.0→4.0 的演进：专业化、体系化、数字化、价值化</p></div>
+        <div class="chapter-card"><h4>第2章 交付之道</h4><p>排兵布阵、灵活机动；工程交付生命周期与规模交付能力</p></div>
+        <div class="chapter-card"><h4>第3章 用将之道</h4><p>项目经理人才模型、能力培养与「班长的战争」</p></div>
+        <div class="chapter-card"><h4>第4章 治理之道</h4><p>项目型组织、PMO、以项目为中心的机制与流程治理</p></div>
+        <div class="chapter-card"><h4>第5章 数智之道</h4><p>ISDP 集成服务交付平台，交付模式数字化转型</p></div>
+        <div class="chapter-card"><h4>第6章 文化之道</h4><p>以客户为中心、结果导向、复盘沉淀知识资产</p></div>
+        <div class="chapter-card"><h4>第7章 价值之道</h4><p>项目价值交付系统，价值管理「三阶六步」</p></div>
+        <div class="chapter-card"><h4>第8章 未来之道</h4><p>项目管理发展趋势与持续进化方向</p></div>
+      </div>
+    </section>
+
+    <section id="evolution">
+      <h2>三、发展之道：四个阶段</h2>
+      <table class="compare-table">
+        <tr><th>阶段</th><th>关键词</th><th>核心动作</th></tr>
+        <tr><td><strong>1.0 专业化</strong></td><td>PMO、流程、交付能力</td><td>成立项目管理办公室，发布项目管理流程，形成专业交付能力</td></tr>
+        <tr><td><strong>2.0 体系化</strong></td><td>项目型组织、机制、文化</td><td>建立项目型组织，以项目为中心的运行机制，形成项目管理文化</td></tr>
+        <tr><td><strong>3.0 数字化</strong></td><td>ISDP、可视交付</td><td>集成服务交付平台广泛应用，交付有序、高效、可视</td></tr>
+        <tr><td><strong>4.0 价值化</strong></td><td>商业价值最大化</td><td>从任务执行跨越到价值创造，以价值为导向管理项目</td></tr>
+      </table>
+      <p>华为项目管理从<strong>单项目</strong>走向<strong>项目群</strong>，再走向 <strong>LTC 端到端</strong>市场项目管理，在全球复杂场景中持续成长——从菲律宾 Globe、印尼 MEGA 到中国移动 T 局等标志性项目，能力是在实战中「事成人长」的。</p>
+    </section>
+
+    <section id="delivery">
+      <h2>四、交付之道：怎么打赢项目</h2>
+
+      <p class="key-title">【交付目标与心法】</p>
+      <p>交付是<strong>保障要素、竞争要素、赢利要素、可持续发展要素</strong>。华为强调交付「四零四心」：</p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="num">四零</div><div class="label">零投诉·零返工·零事故·零问责</div></div>
+        <div class="stat-card"><div class="num">四心</div><div class="label">责任心·信心·决心·关心</div></div>
+      </div>
+
+      <p class="key-title">【工程交付五阶段】</p>
+      <table class="compare-table">
+        <tr><th>阶段</th><th>要点</th></tr>
+        <tr><td><strong>Step1 预投入</strong></td><td>早参与、深投入，工程 PM 介入售前，确保项目可交付</td></tr>
+        <tr><td><strong>Step2 交付准备</strong></td><td>合同交底、交付策略、主计划、资源准备——交付准备快，做好交付准备</td></tr>
+        <tr><td><strong>Step3 工程实施</strong></td><td>缩短磨合期，实现规模交付；进度、质量、成本、变更一体化管控</td></tr>
+        <tr><td><strong>Step4 工程验收</strong></td><td>分层验收、触发开票；验收贯穿全生命周期，切忌一次性全网验收</td></tr>
+        <tr><td><strong>Step5 项目关闭</strong></td><td>善始善终，项目决算、转维移交、经验总结与知识共享</td></tr>
+      </table>
+
+      <p class="key-title">【交付质量管理「6 步 1 法」】</p>
+      <ul>
+        <li><strong>Step1</strong> 确定项目质量标准（PM、QA、客户、分包商共同确认）</li>
+        <li><strong>Step2</strong> 工前培训与技能审核（达不到考核要求不得入场）</li>
+        <li><strong>Step3</strong> 示范站建设（统一质量标准，图文并茂输出 SOP）</li>
+        <li><strong>Step4</strong> 质量自检与抽检</li>
+        <li><strong>Step5</strong> 质量问题管理</li>
+        <li><strong>Step6</strong> 项目质量总结</li>
+      </ul>
+      <blockquote>在质量管理这件事上，没有乘客，全是船员——每个业务动作都要保障最终在客户界面的质量满足要求。<span class="source">—— 华为交付实践</span></blockquote>
+
+      <p class="key-title">【验收关键理念】</p>
+      <ul>
+        <li>先验收后商用，避免维护真空期</li>
+        <li>验收是有组织的经营活动，涉及各方利益</li>
+        <li>分阶分步验收，文档分步获得，不是一锤子买卖</li>
+        <li>成功验收是促回款、保现金流的关键里程碑</li>
+      </ul>
+    </section>
+
+    <section id="foundation">
+      <h2>五、项目管理基础框架</h2>
+      <p>华为项目管理建立在国际通用的 PMBOK 框架之上，并针对复杂交付场景做了深度实践化。</p>
+
+      <p class="key-title">【项目 vs 日常运作】</p>
+      <p>项目是<strong>临时性、唯一性</strong>的工作，目标是创造独特的产品、服务或成果；日常运作是连续重复的业务。企业成功有赖于每个项目的成功，项目管理是商业目标达成和战略实现的手段。</p>
+
+      <p class="key-title">【三重制约 + 客户满意】</p>
+      <table class="compare-table">
+        <tr><th>维度</th><th>含义</th></tr>
+        <tr><td><strong>范围 Scope</strong></td><td>项目范围管理是其它管理的基础，核心是工作内容的设定和取舍</td></tr>
+        <tr><td><strong>时间 Time</strong></td><td>在预算内按时提交满足要求的产品、服务或成果</td></tr>
+        <tr><td><strong>成本 Cost</strong></td><td>有效控制资源投入，交付成本做到心中有数</td></tr>
+        <tr><td><strong>客户满意</strong></td><td>最终衡量项目是否成功的关键标尺</td></tr>
+      </table>
+
+      <p class="key-title">【五大过程组 · 十大知识领域】</p>
+      <ul>
+        <li><strong>五大过程组</strong>：启动 → 计划 → 实施 → 监控 → 收尾</li>
+        <li><strong>十大知识领域</strong>：整合、范围、进度、成本、质量、资源、沟通、风险、采购、干系人</li>
+        <li><strong>WBS 分解原则</strong>：大事化小，完全穷尽、彼此独立；活动长度通常小于两周（80 小时），有清晰责任人与可估算工期</li>
+      </ul>
+
+      <p class="key-title">【质量管理 PDCA】</p>
+      <p>以客户为中心、预防为主，坚持「三全管理」（全员、全过程、全项目）和戴明循环 PDCA：策划 → 实施 → 检查 → 处置。</p>
+
+      <p class="key-title">【干系人管理】</p>
+      <p>复杂交付项目的干系人网络包括：客户、监理、分包商、政府部门、PM、QA、设计经理、财务、产品团队等。识别干系人、分析影响、平衡目标，是项目计划的关键前置动作。</p>
+    </section>
+
+    <section id="people">
+      <h2>六、用将之道 · 治理之道 · 数智之道</h2>
+
+      <p class="key-title">【用将之道】</p>
+      <ul>
+        <li>技术专家不等于管理专家，21 世纪 CEO 都应是项目管理专家</li>
+        <li>项目经理需具备知识结构、沟通能力、风险意识与责任担当</li>
+        <li>「班长的战争」：把决策权下沉到一线，让听得见炮声的人指挥战斗</li>
+        <li>项目团队建设：War Room、激励机制、经验交流与 Workshop</li>
+      </ul>
+
+      <p class="key-title">【治理之道】</p>
+      <ul>
+        <li>建立<strong>项目型组织</strong>，以项目为中心配置资源与考核机制</li>
+        <li><strong>PMO</strong> 作为组织级项目管理能力库，统筹流程、标准与最佳实践</li>
+        <li>核心流程：<strong>IPD</strong>（集成产品开发）与 <strong>LTC</strong>（从线索到现金）贯穿研发与销售交付全链路</li>
+        <li>流程是「一把刀」：砍掉臃肿，磨砺锋芒——标准化与专业化是复杂项目稳定的保障</li>
+      </ul>
+
+      <p class="key-title">【数智之道】</p>
+      <ul>
+        <li><strong>ISDP</strong>（集成服务交付平台）：实现交付有序、高效、可视</li>
+        <li>数字化平台支撑进度、质量、文档、验收等全流程在线管理</li>
+        <li>交付模式数字化转型，提升效率与质量，经验可复用到其它行业</li>
+      </ul>
+    </section>
+
+    <section id="culture-value">
+      <h2>七、文化之道 · 价值之道</h2>
+
+      <p class="key-title">【文化之道】</p>
+      <ul>
+        <li><strong>以客户为中心</strong>，结果导向，对标先进</li>
+        <li>避免「三边工程」（边计划、边实施、边修改）和「六拍运动」（拍脑门、拍肩膀、拍胸脯……）</li>
+        <li><strong>复盘是核心环节</strong>：项目结束后沉淀正反面案例，失败也是资产</li>
+        <li>「胜则举杯相庆，败则拼死相救」——经验总结进入案例库，供组织学习</li>
+      </ul>
+
+      <p class="key-title">【价值之道：三阶六步】</p>
+      <p>华为项目价值交付系统以价值管理为核心：</p>
+      <table class="compare-table">
+        <tr><th>步骤</th><th>动作</th></tr>
+        <tr><td>明确价值目标</td><td>项目启动时对齐商业与客户价值，而非仅对齐任务清单</td></tr>
+        <tr><td>制定价值计划</td><td>将价值目标分解到里程碑与交付物</td></tr>
+        <tr><td>实施价值跟踪</td><td>过程中持续监控价值实现偏差</td></tr>
+        <tr><td>呈现价值结果</td><td>验收与关闭阶段量化呈现商业价值</td></tr>
+      </table>
+      <p>项目管理 4.0 的核心跃迁：从「把项目做完」到「把价值做成」。</p>
+    </section>
+
+    <section id="insights">
+      <h2>八、结合实践的启示</h2>
+      <p>读本书时，我尤其关注如何把华为的方法论映射到<strong>物流信息系统与 AGV/WMS 项目</strong>交付中：</p>
+      <ul>
+        <li><strong>项目经理要有责任与担当</strong>：对范围、进度、质量、成本、客户满意负总责，不能当「传声筒」</li>
+        <li><strong>深入一线，落地践行</strong>：深入调研、深入现场，把方案建立在真实业务与设备场景之上</li>
+        <li><strong>销售与交付要和决策者沟通</strong>：关键决策需触达客户决策层，避免「做了大量工作却无人拍板」</li>
+        <li><strong>早参与、深投入</strong>：售前阶段就评估可交付性，比中标后才发现做不了成本低得多</li>
+        <li><strong>分层验收、分步回款</strong>：大型仓储项目切忌「一次性全网验收」，应按库区/功能模块分阶段验收</li>
+        <li><strong>质量前移</strong>：SIT/UAT 阶段充分暴露问题，比上线后救火便宜——与「人机料法环」质量模型一脉相承</li>
+      </ul>
+    </section>
+
+    <section id="review">
+      <h2>九、学习心得</h2>
+      <p>《华为项目管理之道》不是 PMBOK 的翻版，而是<strong>30 年血战沙场后的方法论沉淀</strong>。它的价值在于把项目管理从「表格和流程」还原成<strong>赢项目、交价值、养能力</strong>的系统工程。</p>
+      <p>对我触动最深的三点：<strong>① 项目管理是华为的根能力，不是锦上添花；② 交付准备决定成败，「交付准备快、做好交付准备」；③ 复盘与知识共享让组织越打越强，个人经验变成组织能力。</strong></p>
+      <p>无论是通信工程还是物流自动化项目，道理相通：以客户为中心，用流程保稳定，用人才和文化保执行，用数字化提效率，用价值管理定方向。项目管理之道，归根结底是<strong>事成人长</strong>之道。</p>
+    </section>
+
+    <footer>—— 读书札记 · 完 ——</footer>
+  </div>
+</body>
+</html>
