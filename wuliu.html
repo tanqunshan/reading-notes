@@ -88,50 +88,69 @@
       display: block; margin-top: 10px; font-size: .88rem;
       font-style: normal; color: var(--muted); text-align: right;
     }
-    .compare-table {
-      width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .92rem;
+    .compare-table, .model-table {
+      width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .88rem;
     }
-    .compare-table th, .compare-table td {
+    .compare-table th, .compare-table td,
+    .model-table th, .model-table td {
       border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top;
     }
-    .compare-table th { background: var(--accent-light); color: var(--accent); }
+    .compare-table th, .model-table th { background: var(--accent-light); color: var(--accent); }
+    .model-table .dim-row td:first-child {
+      background: #f0f6f2;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
     figure { margin: 24px 0; text-align: center; }
     figure.hero-img img {
       width: min(100%, 520px); height: auto; object-fit: cover;
       border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.12); margin-top: 16px;
     }
     figure.section-img img {
-      width: 100%; max-height: 420px; object-fit: contain;
+      width: 100%; max-height: 480px; object-fit: contain;
       border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,.1);
     }
     figcaption { font-size: .82rem; color: var(--muted); margin-top: 8px; }
-    .dim-grid {
+    .stat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
       margin: 16px 0;
     }
-    .dim-card {
+    .stat-card {
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 16px;
+      padding: 14px;
+      text-align: center;
       background: #fafcf9;
     }
-    .dim-card h4 {
+    .stat-card .num {
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--accent);
-      margin-bottom: 8px;
-      font-size: 1.05rem;
+      line-height: 1.2;
     }
-    .dim-card p, .dim-card ul {
+    .stat-card .label {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 4px;
       text-indent: 0;
-      margin: 0;
-      font-size: .92rem;
     }
-    .dim-card ul { margin-left: 1.2em; margin-top: 8px; }
+    .dim-badge {
+      display: inline-block;
+      font-size: .85rem;
+      padding: 2px 10px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      margin-bottom: 10px;
+    }
     @media (max-width: 600px) {
       h1 { font-size: 1.35rem; }
       section { padding: 20px 18px; }
-      .compare-table { font-size: .82rem; }
+      .compare-table, .model-table { font-size: .78rem; }
     }
     footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 24px; font-style: italic; }
   </style>
@@ -141,168 +160,185 @@
     <p class="nav-back"><a href="index.html">← 返回读书笔记目录</a></p>
     <header>
       <h1>《物流信息系统质量建设模型》</h1>
-      <p class="subtitle">基于「人机料法环」的仓储物流系统质量管理框架 · 整理日期：2026年07月</p>
+      <p class="subtitle">系统建设质量模型 · 舍弗勒实践 · 人机料法环 · 整理日期：2026年07月</p>
       <figure class="hero-img">
         <img src="images/wuliu/cover.png" alt="物流信息系统质量建设模型" loading="lazy" />
-        <figcaption>物流系统建设质量模型 · 思维导图摘要</figcaption>
+        <figcaption>系统建设质量模型 · 思维导图摘要</figcaption>
       </figure>
     </header>
 
     <section id="intro">
-      <h2>一、模型要解决什么问题？</h2>
-      <p>自动化仓储物流系统建设，往往不是「把 WMS/WCS 装上去」这么简单。设备、软件、业务规则、人员、网络与外部接口任一环节出问题，都会导致上线不稳定、验收困难、尾款难收、客户满意度下降。</p>
-      <p>本模型源于多个大型项目实践（尤其舍弗勒等德资汽车供应链项目），在 UAT 测试阶段首次系统提出：用制造业经典的 <strong>「人机料法环」</strong> 框架，拆解<strong>物流信息系统建设全过程</strong>的质量管理要素，形成可复用的方法论。</p>
-      <blockquote>第一性原理：建设的核心是质量的保障，过程的管理。项目实施不是简单的产品交付，而是生产一套满足需求、稳定运行的物流系统。<span class="source">—— 模型核心思想</span></blockquote>
-    </section>
-
-    <section id="framework">
-      <h2>二、总体指导思想</h2>
-      <p>模型嵌入公司「<strong>重质量、保交付、促销售、强产品</strong>」的指导体系：</p>
-      <table class="compare-table">
-        <tr><th>维度</th><th>含义</th></tr>
-        <tr><td><strong>重质量（核心）</strong></td><td>质量建设是创造价值的生产力；上线稳定、掌握项目主动，是后续一切工作的基础</td></tr>
-        <tr><td><strong>保交付</strong></td><td>在质量保障前提下，按时稳定交付，减少「鸡飞狗跳」式救火</td></tr>
-        <tr><td><strong>强产品</strong></td><td>通过项目沉淀 WMS/WCS 功能与算法能力，形成可复用产品</td></tr>
-        <tr><td><strong>促销售</strong></td><td>经典项目案例反哺商务，如增补合同、验收回款</td></tr>
-      </table>
-      <figure class="section-img">
-        <img src="images/wuliu/framework.png" alt="人机料法环质量管理框架" loading="lazy" />
-        <figcaption>质量管理是一种生产力</figcaption>
-      </figure>
-    </section>
-
-    <section id="model">
-      <h2>三、物流系统建设质量模型：人机料法环</h2>
-      <p>「人机料法环」是生产管理与现场管理中经典的系统分析框架。迁移到<strong>物流信息系统建设</strong>，五个维度分别对应：</p>
-      <div class="dim-grid">
-        <div class="dim-card">
-          <h4>人</h4>
-          <ul>
-            <li>操作人员水平：习惯、业务水平、经验、教育</li>
-            <li>岗位与人数配置：使用人员、仓库主管、实施/运维/安全等角色分工</li>
-            <li>客户深度参与：需求、设计、SIT、UAT 全链路</li>
-          </ul>
-        </div>
-        <div class="dim-card">
-          <h4>机</h4>
-          <ul>
-            <li>物流设备：调度、通信对接、稳定性</li>
-            <li>服务器、网络、终端、打印设备</li>
-            <li>设备效率仿真与极限验证</li>
-          </ul>
-        </div>
-        <div class="dim-card">
-          <h4>料</h4>
-          <ul>
-            <li>物料主数据</li>
-            <li>单据结构：入库/出库/库管单据</li>
-            <li>库存结构与多货主数据</li>
-          </ul>
-        </div>
-        <div class="dim-card">
-          <h4>法</h4>
-          <ul>
-            <li>业务流程与管理规范</li>
-            <li>仓库规划设计、设备/网络/安全规范</li>
-            <li>异常防呆、功能设计说明书</li>
-            <li>界面原型与业务规则细化标准</li>
-          </ul>
-        </div>
-        <div class="dim-card">
-          <h4>环</h4>
-          <ul>
-            <li>软件环境：OS、数据库</li>
-            <li>网络环境：IP、防火墙、带宽与稳定性</li>
-            <li>外部系统接口：协议、数据、异常处理</li>
-          </ul>
-        </div>
-      </div>
-      <p>五个维度<strong>互相影响</strong>：任一维度出问题，整体质量管理都会失效。模型强调系统性思考，而非只盯软件功能本身。</p>
-      <figure class="section-img">
-        <img src="images/wuliu/model.png" alt="物流仓储系统建设五维度" loading="lazy" />
-        <figcaption>物流仓储系统建设的五个维度</figcaption>
-      </figure>
-    </section>
-
-    <section id="phases">
-      <h2>四、全生命周期如何落地？</h2>
-
-      <p class="key-title">【1. 需求调研阶段】</p>
-      <p>从五个维度展开数字化调研，形成可评审、可追踪的调研方案：</p>
-      <ul>
-        <li><strong>人</strong>：形成操作人员数字画像</li>
-        <li><strong>机</strong>：物流设备通信协议、效率仿真；服务器性能报告；网络/打印设备参数</li>
-        <li><strong>料</strong>：收集物料主数据、单据与库存结构；现有业务运行数据数字化分析</li>
-        <li><strong>法</strong>：业务管理规范、仓库规划方案、界面原型、防呆措施</li>
-        <li><strong>环</strong>：明确接口协议，收集对接测试数据或真实系统数据</li>
-      </ul>
-
-      <p class="key-title">【2. 研发阶段】</p>
-      <p>始终围绕五维度进行系统功能与流程设计，避免「只开发、不管现场怎么用」。</p>
-
-      <p class="key-title">【3. 测试实施阶段】</p>
-      <p>所有项目必须经过五维度测试，无限接近生产环境，需各方通力配合完成 SIT 与 UAT：</p>
-      <table class="compare-table">
-        <tr><th>阶段</th><th>要点</th></tr>
-        <tr><td><strong>内部测试</strong></td><td>测试也是生产力；模块化开发下测试人员承担造数据，保证内部流程走通</td></tr>
-        <tr><td><strong>SIT 第一阶段</strong></td><td>部署项目地测试环境，各方按整体业务流程做集成对接测试</td></tr>
-        <tr><td><strong>SIT 第二阶段</strong></td><td>业务操作人员参与界面操作，完成系统层面功能测试</td></tr>
-        <tr><td><strong>SIT 第三阶段</strong></td><td>业务操作压力测试</td></tr>
-        <tr><td><strong>SIT 第四阶段</strong></td><td>物流系统与设备集成测试</td></tr>
-        <tr><td><strong>UAT</strong></td><td>人机料法环全方位测试，模拟真实场景、多系统联调</td></tr>
-        <tr><td><strong>迁移生产</strong></td><td>服务器迁移，其他环境保持一致</td></tr>
-      </table>
-
-      <p class="key-title">【4. 效率测试】</p>
-      <p>验证物流整体系统效率极限（如托盘库 382 托/小时、箱式库 684 箱/小时等），可作为软件调度优化依据。生益科技项目通过系统性优化，效率从 42 托/H 提升至 55 托/H（约 30%），推进尾款回收。</p>
+      <h2>一、模型概述</h2>
+      <p>本模型依据<strong>舍弗勒项目</strong>质量管理实践，结合生产管理思想，全面总结物流系统实施原理，创建可复用的质量管理框架，作为全面质量管理的典范。</p>
+      <p>核心思路：物流系统建设不是简单的产品交互，而是<strong>生产一套满足需求、稳定运行的物流系统</strong>；贯穿始终的是质量管理，而非事后补救。</p>
+      <blockquote>第一性原理：建设，本质上是生产一套满足需求的稳定物流系统；核心就是质量管理。<span class="source">—— 模型分析过程</span></blockquote>
     </section>
 
     <section id="case">
-      <h2>五、典型案例：舍弗勒项目</h2>
-      <p>舍弗勒（德资汽车零部件供应商，2023 年全球百强榜第 28 位）项目是质量管理模型的<strong>实践样板</strong>：</p>
+      <h2>二、舍弗勒项目：质量管理典范</h2>
+      <p>舍弗勒项目是这套模型的实践样板。最重要的经验是<strong>客户深度参与质量管理</strong>：3 个月测试期间，客户投入 30 人次、分 2 个团队，模拟真实场景集成多系统测试；每个阶段环环相扣，上一阶段评估通过后方可进入下一阶段。</p>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="num">30</div><div class="label">客户参与人次</div></div>
+        <div class="stat-card"><div class="num">824</div><div class="label">1 年往来邮件</div></div>
+        <div class="stat-card"><div class="num">271</div><div class="label">测试优化项</div></div>
+        <div class="stat-card"><div class="num">3</div><div class="label">个月联调测试</div></div>
+      </div>
+
+      <p class="key-title">过程管理</p>
       <ul>
-        <li><strong>业务复杂</strong>：托盘库+箱式库复合、多货主、补货、订单排单、波次、打包发运、逆向/应急流程、SAP 对接</li>
-        <li><strong>流量规模</strong>：托盘库 382 托/小时，箱式库 684 箱/小时，日产生约 25 万条业务数据</li>
-        <li><strong>团队与过程</strong>：33 人明确分工；专职跟踪每项功能工时与进度；1 年往来邮件 824 封</li>
-        <li><strong>客户参与</strong>：需求→设计→功能验证→集成/压力/UAT 全链路深度参与，阶段评审通过方可进入下一阶段</li>
-        <li><strong>测试成果</strong>：SIT/UAT 共优化完善 271 项；其中页面调整 82 项、需求完善 151 项、业务调整 61 项等</li>
+        <li>专职人员跟踪开发过程中每一项功能的工时与进度计划完成情况</li>
+        <li>1 年内往来邮件 824 封，涵盖需求、设计、测试、沟通等工作内容</li>
+        <li>发现问题限时修改，专人跟踪，形成闭环</li>
       </ul>
-      <blockquote>有了坚强的质量管理保障，实现按时稳定交付，没有出现「鸡飞狗跳」——首站即决战，一战定乾坤。<span class="source">—— 项目总结</span></blockquote>
-      <p>经验反哺标准：应强化界面/原型设计标准、业务规则细化指导书、测试环境本地化与现场绿色部署等。</p>
+
+      <p class="key-title">271 项测试优化分析</p>
+      <p>测试期间共优化完善 271 项需求、BUG 与优化项，主要集中在出库管理、包装管理、发货管理、接口调试等方面。</p>
+      <table class="compare-table">
+        <tr><th>分类</th><th>数量</th><th>说明</th></tr>
+        <tr><td>需求完善</td><td>151</td><td>需求调研阶段应更充分</td></tr>
+        <tr><td>其它类</td><td>120</td><td>—</td></tr>
+        <tr><td>页面调整</td><td>82</td><td>最多；建议强化界面设计与原型标准</td></tr>
+        <tr><td>业务调整</td><td>61</td><td>含 WSO、RO、特殊订单、IQC 等新增</td></tr>
+        <tr><td>业务细化</td><td>18</td><td>盘点功能完善、异常处理等</td></tr>
+      </table>
+
+      <p class="key-title">经验总结</p>
+      <ul>
+        <li><strong>界面设计前置</strong>：需求期间应强化界面设计，完善原型设计标准</li>
+        <li><strong>业务规则细化</strong>：建议制定业务规则细化标准或指导书</li>
+        <li><strong>测试环境本地化</strong>：建议公司测试环境本地化，现场绿色部署</li>
+      </ul>
+    </section>
+
+    <section id="methodology">
+      <h2>三、质量管理模型：人机料法环</h2>
+      <p>在 UAT 测试阶段，首次系统总结出<strong>「人机料法环」</strong>方法论模型。该模型属于质量管理、生产管理和现场管理中非常经典的分析框架，从五个核心维度系统地分解影响物流系统建设过程的所有要素。</p>
+      <figure class="section-img">
+        <img src="images/wuliu/framework.png" alt="人机料法环质量管理框架" loading="lazy" />
+        <figcaption>人机料法环 · 质量管理框架</figcaption>
+      </figure>
+      <figure class="section-img">
+        <img src="images/wuliu/model.png" alt="物流仓储系统建设五维度" loading="lazy" />
+        <figcaption>物流仓储系统建设质量模型</figcaption>
+      </figure>
+      <figure class="section-img">
+        <img src="images/wuliu/diagram-full.png" alt="质量管理模型全景图" loading="lazy" />
+        <figcaption>质量管理模型全景</figcaption>
+      </figure>
+    </section>
+
+    <section id="model-table">
+      <h2>四、五维度要素与全生命周期落地</h2>
+      <p>下表摘自《物流仓储系统建设质量管理模型》，按<strong>人、机、料、法、环</strong>五个维度，列出各要素在需求调研、设计开发、测试、实施四个阶段的落地要点。</p>
+
+      <h3><span class="dim-badge">人</span></h3>
+      <div class="table-wrap">
+        <table class="model-table">
+          <tr><th>元素</th><th>说明</th><th>需求调研</th><th>设计开发</th><th>测试</th><th>实施</th></tr>
+          <tr><td>数字画像</td><td>身份属性、技能标签、教育背景、培训记录、性格、工作习惯、沟通协作、可塑性</td><td>按画像维度收集并整理项目干系人信息</td><td>界面设计符合数字画像需求</td><td>协调人员进行功能验证、集成测试、UAT、压力测试</td><td>作为实施的沟通依据</td></tr>
+          <tr><td>岗位设置</td><td>系统运行中设置的岗位名称</td><td>梳理岗位职责，匹配系统功能</td><td>针对不同岗位进行界面和权限设计考量</td><td>每个岗位都需参与测试，配置角色</td><td>—</td></tr>
+          <tr><td>岗位人员配置</td><td>每个岗位的任务配置数量</td><td>梳理每个岗位的人员配备</td><td>考虑系统操作的防呆措施和性能设计要求</td><td>抽调人员参与测试，配置用户</td><td>—</td></tr>
+          <tr><td>岗位人员稳定性</td><td>各岗位人员是否稳定</td><td>按岗位梳理，关键运维岗位建议稳定</td><td>人机界面友好</td><td>关键人员全程参与</td><td>作为实施的沟通依据</td></tr>
+          <tr><td>物流系统使用经验</td><td>是否具备物流软件应用系统的使用经验</td><td>调研完成</td><td>—</td><td>参与测试</td><td>作为实施的沟通依据</td></tr>
+          <tr><td>物流系统使用习惯</td><td>对已有物流系统是否有固定的操作习惯</td><td>调研输出具体页面的操作习惯</td><td>特别注意移动端界面的便捷性和防呆措施</td><td>参与测试，引导测试</td><td>作为实施的沟通依据</td></tr>
+          <tr><td>物流业务经验</td><td>是否能够清晰表达业务需求</td><td>业务调研确认</td><td>无业务经验时，按现有逻辑引导</td><td>按测试用例逐项验证</td><td>作为实施的沟通依据</td></tr>
+          <tr><td>团队协作</td><td>团队协作方式、沟通方式</td><td>业务调研时确认</td><td>考虑团队协作方式对设计的影响</td><td>用于测试的沟通基础</td><td>—</td></tr>
+        </table>
+      </div>
+
+      <h3><span class="dim-badge">机</span></h3>
+      <div class="table-wrap">
+        <table class="model-table">
+          <tr><th>元素</th><th>说明</th><th>需求调研</th><th>设计开发</th><th>测试</th><th>实施</th></tr>
+          <tr><td>外部系统集成</td><td>外部系统接口方案</td><td>接口协议</td><td>接口性能、防呆处理、异常处理方案，制定集成测试用例</td><td>重点进行接口集成测试、UAT 和压力测试</td><td>培训接口异常处理方案，收集并界定新需求</td></tr>
+          <tr><td>物流设备集成</td><td>设备空间布局、通信方案和性能指标、设备调度方案</td><td>设备参数、性能指标、效率方案</td><td>通信协议、防呆处理、异常处理方案，制定设备集成测试用例</td><td>设备集成测试、UAT 和压力测试</td><td>培训异常情况，收集防呆处理措施</td></tr>
+          <tr><td>物流设备稳定性</td><td>通信稳定，是否首次集成、是否首家供应商</td><td>输出供应商数字画像</td><td>考虑设备不稳定情况下的调度方案，制定异常测试用例</td><td>集成测试阶段完成测试</td><td>收集设备稳定性带来的系统优化完善</td></tr>
+          <tr><td>服务器设备</td><td>服务器型号、配置参数</td><td>明确服务器配置，配置测试服务器</td><td>做适配</td><td>配置测试服务器，建议与正式环境配置类似</td><td>监控正式环境服务器性能</td></tr>
+          <tr><td>网络设备</td><td>交换机型号、配置参数</td><td>明确</td><td>—</td><td>现场正式网络环境</td><td>监控网络设备运行状况</td></tr>
+          <tr><td>电脑终端</td><td>电脑终端型号、配置参数</td><td>—</td><td>—</td><td>建议正式终端</td><td>安装终端设备</td></tr>
+          <tr><td>移动终端</td><td>移动终端型号、配置参数</td><td>—</td><td>根据选型做适配</td><td>正式移动终端</td><td>培训移动终端的日常维护</td></tr>
+          <tr><td>显示终端</td><td>显示终端型号、配置参数、通信接口、性能参数</td><td>—</td><td>—</td><td>正式设备</td><td>培训日常运维</td></tr>
+          <tr><td>打印终端</td><td>打印终端型号、配置参数、通信接口、性能参数</td><td>明确，建议标准化设备</td><td>—</td><td>—</td><td>培训日常运维</td></tr>
+        </table>
+      </div>
+
+      <h3><span class="dim-badge">料</span></h3>
+      <div class="table-wrap">
+        <table class="model-table">
+          <tr><th>元素</th><th>说明</th><th>需求调研</th><th>设计开发</th><th>测试</th><th>实施</th></tr>
+          <tr><td>实体物料</td><td>仓库管理的各类实物物料</td><td>拍照记录</td><td>—</td><td>UAT 测试阶段需要实体物料参与</td><td>跟踪运行</td></tr>
+          <tr><td>物料数据</td><td>编码、物料属性</td><td>整理物料库存管理属性维度，需求规格说明书</td><td>依据属性维度和基础版本选择最合适的设计方案</td><td>依据测试用例，各测试阶段适用</td><td>跟踪新的物料导入情况</td></tr>
+          <tr><td>显示载体</td><td>标签样式、模版、标签编码构成</td><td>整理标签需求方案，需求规格说明书</td><td>考虑标签具体要求，对标产品基本功能设计</td><td>测试打印效果和打印性能</td><td>跟踪标签日常打印情况</td></tr>
+          <tr><td>容器载体</td><td>类别、容器属性</td><td>明确</td><td>明确多规格容器的设计方案</td><td>各测试阶段均需要覆盖</td><td>跟踪日常运行</td></tr>
+        </table>
+      </div>
+
+      <h3><span class="dim-badge">法</span></h3>
+      <div class="table-wrap">
+        <table class="model-table">
+          <tr><th>元素</th><th>说明</th><th>需求调研</th><th>设计开发</th><th>测试</th><th>实施</th></tr>
+          <tr><td>物流业务流程</td><td>仓库管理的整个作业过程</td><td>写入需求规格书</td><td>设计测试用例，与用户确认</td><td>依据测试用例组织人员调试测试</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>仓库业务动线规划</td><td>仓库出入库作业动线、设备规划设计方案</td><td>技术协议</td><td>依据动线方案设计项目物流流程</td><td>UAT 阶段用实物进行测试</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>物流效率设计方案</td><td>单机设备效率指标、整体系统调度方案</td><td>—</td><td>设计物流效率初步方案，效率测试用例</td><td>通过人工方式设计模拟效率测试方案，测试系统极限效率</td><td>跟踪运行，完善效率优化方案，自动化完成效率测试</td></tr>
+          <tr><td>信息系统集成方案</td><td>各集成系统信息流转方案</td><td>需求规格说明书</td><td>接口测试用例，与用户确认</td><td>依据测试用例进行集成测试和 UAT 测试</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>业务功能需求用例</td><td>物流仓储系统内部各功能用例描述</td><td>—</td><td>功能测试用例和实现方案，与用户确认完善</td><td>组织人员进行测试，测试阶段会产生新需求</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>业务界面原型</td><td>核心操作界面、点击率高的界面原型</td><td>原型规则说明</td><td>界面原型设计</td><td>组织用户进行界面操作测试，完善界面设计</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>业务功能规则</td><td>每个功能点的业务规则方案</td><td>需求规格说明书</td><td>对标产品，设计出最小差异化定制方案</td><td>组织人员进行测试</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>应用系统安全规则</td><td>安全规范</td><td>—</td><td>满足安全规范要求</td><td>组织进行安全规范检测</td><td>跟踪日常运行</td></tr>
+          <tr><td>系统性能设计要求</td><td>系统稳定性和性能需求方案</td><td>—</td><td>从数据库索引、缓存、异步、分页等方面综合考虑</td><td>压力测试阶段，依据测试用例进行</td><td>跟踪日常运行，收集新需求</td></tr>
+          <tr><td>非功能性需求</td><td>系统主题色等</td><td>—</td><td>配置</td><td>覆盖测试</td><td>跟踪日常运行</td></tr>
+        </table>
+      </div>
+
+      <h3><span class="dim-badge">环</span></h3>
+      <div class="table-wrap">
+        <table class="model-table">
+          <tr><th>元素</th><th>说明</th><th>需求调研</th><th>设计开发</th><th>测试</th><th>实施</th></tr>
+          <tr><td>操作系统环境</td><td>操作系统选型</td><td>需求规格说明书明确部署方案</td><td>操作系统环境做适配</td><td>测试环境和正式环境操作系统版本一致</td><td>跟踪日常运行</td></tr>
+          <tr><td>数据库环境</td><td>数据库选型</td><td>—</td><td>数据库环境做适配</td><td>测试环境和正式环境数据库系统版本及配置一致</td><td>跟踪日常运行</td></tr>
+          <tr><td>IP 地址管理</td><td>IP 地址分配方案、管理细则</td><td>—</td><td>—</td><td>专门分配测试环境 IP 地址</td><td>跟踪日常运行</td></tr>
+          <tr><td>防火墙</td><td>防火墙的选型</td><td>—</td><td>—</td><td>测试环境的防火墙需要和正式环境一致</td><td>跟踪日常运行</td></tr>
+          <tr><td>网络速度</td><td>规划的网速和实际网速</td><td>—</td><td>设计时注意网速带来的影响</td><td>测试环境的网速需要和正式环境一致，网速慢测试</td><td>跟踪日常运行</td></tr>
+          <tr><td>网络稳定性</td><td>网络稳定性方案</td><td>—</td><td>—</td><td>测试环境的稳定性需要和正式环境一致，断网测试</td><td>跟踪日常运行</td></tr>
+        </table>
+      </div>
+
+      <figure class="section-img">
+        <img src="images/wuliu/diagram-detail.png" alt="质量管理模型详细图" loading="lazy" />
+        <figcaption>五维度要素详细对照</figcaption>
+      </figure>
     </section>
 
     <section id="questions">
-      <h2>六、模型回答的关键问题</h2>
+      <h2>五、模型回答的关键问题</h2>
+
+      <p class="key-title">【1. 系统性思考】</p>
+      <p>物流系统建设需要从五个维度系统性思考，五个维度互相产生影响。一个维度出问题，都会导致质量管理乃至项目管理出现问题。</p>
+
+      <p class="key-title">【2. 项目成本是系统工程】</p>
+      <p>项目实施成本预算是系统工程，受制于设备稳定性、人员、外部系统，都会给项目建设成本带来不确定性。建议项目前期就五个维度深入分析建设过程中带来的成本。</p>
+
+      <p class="key-title">【3. 需求是持续迭代的过程】</p>
+      <p>需求不是一蹴而就的，需要不断迭代、不断接力。受制于人的因素、外部系统因素、业务变更影响，需求是一个漫长的、贯穿实施整个周期的迭代过程。</p>
+
+      <p class="key-title">【4. 设计需五维度综合考虑】</p>
+      <p>设计也需要从五个维度进行综合考虑，例如增加对人性的理解——界面设计要符合数字画像，移动端要考虑操作习惯和防呆措施。</p>
+
+      <p class="key-title">【5. 实施工作前移到 SIT/UAT】</p>
+      <p>实施工作的重点应前移到 SIT 和 UAT 阶段：</p>
       <ul>
-        <li>物流系统建设需要从哪些维度<strong>系统性思考</strong>？</li>
-        <li>五个维度如何<strong>互相影响</strong>？为何「一环出问题，全盘受影响」？</li>
-        <li>项目实施成本应如何<strong>分维度评估</strong>？</li>
-        <li>需求应如何<strong>迭代</strong>（页面、规则细化、业务新增/调整）？</li>
-        <li>各方应从哪些维度<strong>参与质量管理</strong>？</li>
+        <li><strong>解决人的因素</strong>：想尽一切办法，拉客户下水，深度参与测试</li>
+        <li><strong>减轻生产环境压力</strong>：让大家的辛苦有效果；质量不稳，现场需要花很大精力去弥补</li>
+        <li><strong>掌握主动权</strong>：实施过程中掌握主动权的保障，不是被动挨打</li>
       </ul>
     </section>
 
-    <section id="insights">
-      <h2>七、延伸实践与启示</h2>
-
-      <p class="key-title">【质量是一种生产力】</p>
-      <p>稳定上线不是成本中心，而是减少返工、缩短验收周期、促进回款与增购的基础。质量管理让实施人员的辛苦「有效果」，减轻无效加班压力。</p>
-
-      <p class="key-title">【信息流与物流同步】</p>
-      <p>比亚迪等项目经验：设计业务功能时需做到信息流与物流同步，避免异常导致任务信息残留，降低运维风险。接口失败需完善日志与人工处理方案。</p>
-
-      <p class="key-title">【测试闭环】</p>
-      <p>发现问题限时修改、形成闭环；测试不仅是验收手段，在模块化架构下也是<strong>造数据、提效率</strong>的生产力工具。</p>
-
-      <p class="key-title">【技术决策示例】</p>
-      <p>方太 290 亩立体库项目：通过 MySQL 三节点高可用方案论证，替代高价 Oracle，在大数据量下稳定运行（日约 27 万条业务数据，历史表转移策略），为项目降本并积累数据库选型经验。</p>
-    </section>
-
     <section id="review">
-      <h2>八、学习心得</h2>
-      <p>这套模型的价值，在于把「做项目」从功能清单交付，升级为<strong>全要素质量工程</strong>。对人机料法环五个维度的调研、设计、测试不是 paperwork，而是提前暴露风险、对齐干系人预期、控制范围蔓延的手段。</p>
-      <p>对 WMS/WCS/RCS 研发与实施而言，尤其值得记住三点：<strong>① 客户深度参与比事后改需求便宜；② 接近生产的 SIT/UAT 比上线后救火便宜；③ 业务规则与界面原型前置，比测试阶段改 82 页页面便宜。</strong></p>
-      <p>模型不是教条，而是<strong>检查清单 + 共同语言</strong>：让项目经理、开发、测试、客户、设备方在同一框架下讨论「还缺哪一环」。质量做好了，交付、产品化与销售自然水到渠成。</p>
+      <h2>六、学习心得</h2>
+      <p>这套模型的价值，在于把「做项目」从功能清单交付，升级为<strong>全要素质量工程</strong>。舍弗勒项目的 271 项优化数据说明：页面调整（82 项）和业务规则细化（61+18 项）如果在需求和设计阶段前置，成本会低得多。</p>
+      <p>人机料法环不是 paperwork，而是<strong>检查清单 + 共同语言</strong>：让项目经理、开发、测试、客户、设备方在同一框架下讨论「还缺哪一环」。尤其值得记住三点：<strong>① 客户深度参与比事后改需求便宜；② 接近生产的 SIT/UAT 比上线后救火便宜；③ 业务规则与界面原型前置，比测试阶段改页面便宜。</strong></p>
+      <p>质量做好了，交付、产品化与销售自然水到渠成。</p>
     </section>
 
     <footer>—— 读书札记 · 完 ——</footer>
