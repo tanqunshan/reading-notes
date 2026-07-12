@@ -10,33 +10,38 @@
       --paper: #fffef9;
       --text: #2c2419;
       --muted: #6b5d4f;
-      --accent: #3d5a4a;
-      --accent-light: #e8f0eb;
-      --gold: #8b6914;
       --border: #e0d8cc;
+      --se: #1e4d8c;
+      --se-light: #e8f0fa;
+      --lit: #6b3a5c;
+      --lit-light: #f5ecf2;
+      --geo: #3d5a4a;
+      --geo-light: #e8f0eb;
+      --pm: #8b3a2a;
+      --pm-light: #f8ece8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Georgia", "Songti SC", "SimSun", serif;
-      background: linear-gradient(180deg, #e8e2d8 0%, var(--bg) 160px);
+      background: linear-gradient(180deg, #e8e2d8 0%, var(--bg) 200px);
       color: var(--text);
       line-height: 1.75;
       font-size: 17px;
       min-height: 100vh;
     }
     .wrap {
-      max-width: 760px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 40px 20px 64px;
     }
     header {
       text-align: center;
-      padding: 48px 24px 40px;
+      padding: 52px 24px 44px;
       background: var(--paper);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 8px 32px rgba(44,36,25,.07);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
       position: relative;
       overflow: hidden;
     }
@@ -45,12 +50,12 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+      background: linear-gradient(90deg, var(--se), var(--lit), var(--geo), var(--pm));
     }
     h1 {
-      font-size: 2rem;
-      color: var(--accent);
-      letter-spacing: .2em;
+      font-size: 2.1rem;
+      color: var(--text);
+      letter-spacing: .18em;
       font-weight: 700;
     }
     .subtitle {
@@ -58,58 +63,166 @@
       font-size: .95rem;
       margin-top: 12px;
     }
+    .stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .stat-pill {
+      font-size: .82rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #faf8f4;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); font-weight: 700; }
+
+    .nav-cats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .nav-cat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 18px 12px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 2px 8px rgba(44,36,25,.04);
+    }
+    .nav-cat:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(44,36,25,.1);
+    }
+    .nav-cat .icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .nav-cat .label {
+      font-size: .92rem;
+      font-weight: 700;
+    }
+    .nav-cat .count {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .nav-cat.se { border-top: 3px solid var(--se); }
+    .nav-cat.se .label { color: var(--se); }
+    .nav-cat.lit { border-top: 3px solid var(--lit); }
+    .nav-cat.lit .label { color: var(--lit); }
+    .nav-cat.geo { border-top: 3px solid var(--geo); }
+    .nav-cat.geo .label { color: var(--geo); }
+    .nav-cat.pm { border-top: 3px solid var(--pm); }
+    .nav-cat.pm .label { color: var(--pm); }
+
+    .category {
+      margin-bottom: 40px;
+      scroll-margin-top: 20px;
+    }
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
+    }
+    .cat-header .icon { font-size: 1.5rem; line-height: 1; }
+    .cat-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+    .cat-header .en {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: .04em;
+    }
+    .category.se .cat-header h2 { color: var(--se); }
+    .category.lit .cat-header h2 { color: var(--lit); }
+    .category.geo .cat-header h2 { color: var(--geo); }
+    .category.pm .cat-header h2 { color: var(--pm); }
+
     .note-list {
       display: grid;
-      gap: 20px;
+      gap: 16px;
     }
     .note-card {
       display: block;
       background: var(--paper);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 24px 28px;
+      padding: 22px 26px;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 2px 12px rgba(44,36,25,.04);
+      box-shadow: 0 2px 10px rgba(44,36,25,.04);
       transition: transform .15s, box-shadow .15s, border-color .15s;
     }
     .note-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(44,36,25,.1);
-      border-color: var(--accent);
     }
-    .note-card h2 {
-      font-size: 1.25rem;
-      color: var(--accent);
+    .category.se .note-card:hover { border-color: var(--se); }
+    .category.lit .note-card:hover { border-color: var(--lit); }
+    .category.geo .note-card:hover { border-color: var(--geo); }
+    .category.pm .note-card:hover { border-color: var(--pm); }
+
+    .note-card h3 {
+      font-size: 1.18rem;
       margin-bottom: 8px;
       font-weight: 700;
     }
+    .category.se .note-card h3 { color: var(--se); }
+    .category.lit .note-card h3 { color: var(--lit); }
+    .category.geo .note-card h3 { color: var(--geo); }
+    .category.pm .note-card h3 { color: var(--pm); }
+
     .note-card .meta {
-      font-size: .88rem;
+      font-size: .86rem;
       color: var(--muted);
       margin-bottom: 10px;
     }
     .note-card .desc {
-      font-size: .95rem;
+      font-size: .93rem;
       color: #4a3f35;
       line-height: 1.7;
-      text-indent: 0;
     }
     .tag {
       display: inline-block;
-      font-size: .78rem;
+      font-size: .76rem;
       padding: 2px 8px;
       border-radius: 4px;
-      background: var(--accent-light);
-      color: var(--accent);
-      margin-right: 6px;
+      margin-right: 5px;
     }
+    .category.se .tag { background: var(--se-light); color: var(--se); }
+    .category.lit .tag { background: var(--lit-light); color: var(--lit); }
+    .category.geo .tag { background: var(--geo-light); color: var(--geo); }
+    .category.pm .tag { background: var(--pm-light); color: var(--pm); }
+
     footer {
       text-align: center;
       color: var(--muted);
       font-size: .88rem;
       padding: 32px 0 0;
       font-style: italic;
+    }
+    @media (max-width: 640px) {
+      h1 { font-size: 1.6rem; letter-spacing: .1em; }
+      .nav-cats { grid-template-columns: repeat(2, 1fr); }
+      .note-card { padding: 18px 20px; }
     }
   </style>
 </head>
@@ -118,99 +231,168 @@
     <header>
       <h1>读书笔记</h1>
       <p class="subtitle">阅读 · 记录 · 思考</p>
+      <div class="stats">
+        <span class="stat-pill">共 <strong>9</strong> 篇</span>
+        <span class="stat-pill"><strong>4</strong> 个分类</span>
+        <span class="stat-pill">更新至 2026年07月</span>
+      </div>
     </header>
 
-    <div class="note-list">
-      <a class="note-card" href="huawei.html">
-        <h2>《华为项目管理之道》</h2>
-        <p class="meta">
-          <span class="tag">管理</span>
-          <span class="tag">项目管理</span>
-          华为项目管理能力中心 · 2026年07月
-        </p>
-        <p class="desc">30 年实践总结的「根能力」框架：发展、交付、用将、治理、数智、文化、价值、未来八大篇章，以及交付四零四心、6 步 1 法与价值管理三阶六步。</p>
+    <nav class="nav-cats">
+      <a class="nav-cat se" href="#software">
+        <span class="icon">⚙</span>
+        <span class="label">软件工程</span>
+        <span class="count">1 篇</span>
       </a>
+      <a class="nav-cat lit" href="#literature">
+        <span class="icon">📖</span>
+        <span class="label">文学著作</span>
+        <span class="count">3 篇</span>
+      </a>
+      <a class="nav-cat geo" href="#geography">
+        <span class="icon">🏔</span>
+        <span class="label">人文地理</span>
+        <span class="count">3 篇</span>
+      </a>
+      <a class="nav-cat pm" href="#project">
+        <span class="icon">📋</span>
+        <span class="label">项目管理</span>
+        <span class="count">2 篇</span>
+      </a>
+    </nav>
 
-      <a class="note-card" href="wuliu.html">
-        <h2>《物流信息系统质量建设模型》</h2>
-        <p class="meta">
-          <span class="tag">物流</span>
-          <span class="tag">质量管理</span>
-          项目实践总结 · 2026年07月
-        </p>
-        <p class="desc">舍弗勒项目实践总结「人机料法环」质量模型，从五维度拆解需求、设计、测试、实施全过程，271 项优化数据揭示质量建设的前移价值。</p>
-      </a>
+    <!-- 软件工程 -->
+    <section class="category se" id="software">
+      <div class="cat-header">
+        <span class="icon">⚙</span>
+        <div>
+          <h2>软件工程</h2>
+          <span class="en">Software Engineering</span>
+        </div>
+      </div>
+      <div class="note-list">
+        <a class="note-card" href="se30.html">
+          <h3>《软件工程3.0》读书要点</h3>
+          <p class="meta">
+            <span class="tag">AI</span>
+            <span class="tag">大模型</span>
+            朱少民 · 王千祥 · 2026年06月
+          </p>
+          <p class="desc">从大模型驱动的研发新范式到六大核心能力：提示工程、RAG、智能体、数据治理、模型工程与安全治理，重塑软件全生命周期。</p>
+        </a>
+      </div>
+    </section>
 
-      <a class="note-card" href="se30.html">
-        <h2>《软件工程3.0》读书要点</h2>
-        <p class="meta">
-          <span class="tag">技术</span>
-          <span class="tag">AI</span>
-          朱少民 · 王千祥 · 2026年06月
-        </p>
-        <p class="desc">从大模型驱动的研发新范式到六大核心能力：提示工程、RAG、智能体、数据治理、模型工程与安全治理，重塑软件全生命周期。</p>
-      </a>
+    <!-- 文学著作 -->
+    <section class="category lit" id="literature">
+      <div class="cat-header">
+        <span class="icon">📖</span>
+        <div>
+          <h2>文学著作</h2>
+          <span class="en">Literature</span>
+        </div>
+      </div>
+      <div class="note-list">
+        <a class="note-card" href="piao.html">
+          <h3>《飘》读书札记</h3>
+          <p class="meta">
+            <span class="tag">小说</span>
+            <span class="tag">美国文学</span>
+            玛格丽特·米切尔 · 2026年06月
+          </p>
+          <p class="desc">以南北战争为背景，写斯嘉丽在时代洪流中的挣扎与成长。旧南方文明「飘」逝，唯有土地与「明天又是新的一天」的生命力长存。</p>
+        </a>
+        <a class="note-card" href="huozhe.html">
+          <h3>《活着》读书总结</h3>
+          <p class="meta">
+            <span class="tag">小说</span>
+            <span class="tag">中国当代文学</span>
+            余华 · 2026年06月
+          </p>
+          <p class="desc">徐福贵一生失去所有亲人，仍以平静口吻继续活着。零度叙述下的苦难史诗，回答「人为什么活着」——为活着本身。</p>
+        </a>
+        <a class="note-card" href="eerguna.html">
+          <h3>《额尔古纳河右岸》读书总结</h3>
+          <p class="meta">
+            <span class="tag">小说</span>
+            <span class="tag">茅盾文学奖</span>
+            迟子建 · 2026年06月
+          </p>
+          <p class="desc">鄂温克驯鹿部落最后一位女酋长的百年口述。山林、驯鹿、萨满与死亡，写出一个正在消逝的民族，以及「月亮最后四分之一」的温柔挽歌。</p>
+        </a>
+      </div>
+    </section>
 
-      <a class="note-card" href="sanqingshan.html">
-        <h2>三清山：巨蟒峰与三清宫</h2>
-        <p class="meta">
-          <span class="tag">自然</span>
-          <span class="tag">哲学</span>
-          整理日期：2026年06月
-        </p>
-        <p class="desc">细腰仅约 7 米的花岗岩石柱为何亿万年不倒？从巨蟒峰行程到三清宫选址，读自然奇观与道家「天人合一」的互文。</p>
-      </a>
+    <!-- 人文地理 -->
+    <section class="category geo" id="geography">
+      <div class="cat-header">
+        <span class="icon">🏔</span>
+        <div>
+          <h2>人文地理</h2>
+          <span class="en">Humanities &amp; Geography</span>
+        </div>
+      </div>
+      <div class="note-list">
+        <a class="note-card" href="dujiangyan.html">
+          <h3>《都江堰：千年工程与顺势而为》</h3>
+          <p class="meta">
+            <span class="tag">历史</span>
+            <span class="tag">工程</span>
+            整理日期：2026年06月
+          </p>
+          <p class="desc">李冰父子修建的都江堰，两千余年来滋养成都平原。以「因势利导、顺势而为」的智慧，将洪水化为灌溉之利——一部写在山水之间的无坝治水史诗。</p>
+        </a>
+        <a class="note-card" href="jiuzhaigou.html">
+          <h3>《真正读懂九寨沟》</h3>
+          <p class="meta">
+            <span class="tag">自然</span>
+            <span class="tag">地理</span>
+            整理日期：2026年06月
+          </p>
+          <p class="desc">超越打卡照片，从地质演化、钙华堤坝、藏羌文化到震后修复，读懂九寨沟「翠海叠瀑」背后的自然逻辑与敬畏之心。</p>
+        </a>
+        <a class="note-card" href="sanqingshan.html">
+          <h3>三清山：巨蟒峰与三清宫</h3>
+          <p class="meta">
+            <span class="tag">自然</span>
+            <span class="tag">哲学</span>
+            整理日期：2026年06月
+          </p>
+          <p class="desc">细腰仅约 7 米的花岗岩石柱为何亿万年不倒？从巨蟒峰行程到三清宫选址，读自然奇观与道家「天人合一」的互文。</p>
+        </a>
+      </div>
+    </section>
 
-      <a class="note-card" href="jiuzhaigou.html">
-        <h2>《真正读懂九寨沟》</h2>
-        <p class="meta">
-          <span class="tag">自然</span>
-          <span class="tag">地理</span>
-          整理日期：2026年06月
-        </p>
-        <p class="desc">超越打卡照片，从地质演化、钙华堤坝、藏羌文化到震后修复，读懂九寨沟「翠海叠瀑」背后的自然逻辑与敬畏之心。</p>
-      </a>
-
-      <a class="note-card" href="huozhe.html">
-        <h2>《活着》读书总结</h2>
-        <p class="meta">
-          <span class="tag">小说</span>
-          <span class="tag">中国当代文学</span>
-          余华 · 2026年06月
-        </p>
-        <p class="desc">徐福贵一生失去所有亲人，仍以平静口吻继续活着。零度叙述下的苦难史诗，回答「人为什么活着」——为活着本身。</p>
-      </a>
-
-      <a class="note-card" href="eerguna.html">
-        <h2>《额尔古纳河右岸》读书总结</h2>
-        <p class="meta">
-          <span class="tag">小说</span>
-          <span class="tag">茅盾文学奖</span>
-          迟子建 · 2026年06月
-        </p>
-        <p class="desc">鄂温克驯鹿部落最后一位女酋长的百年口述。山林、驯鹿、萨满与死亡，写出一个正在消逝的民族，以及「月亮最后四分之一」的温柔挽歌。</p>
-      </a>
-
-      <a class="note-card" href="dujiangyan.html">
-        <h2>《都江堰：千年工程与顺势而为》</h2>
-        <p class="meta">
-          <span class="tag">历史</span>
-          <span class="tag">工程</span>
-          整理日期：2026年06月
-        </p>
-        <p class="desc">李冰父子修建的都江堰，两千余年来滋养成都平原。以「因势利导、顺势而为」的智慧，将洪水化为灌溉之利——一部写在山水之间的无坝治水史诗。</p>
-      </a>
-
-      <a class="note-card" href="piao.html">
-        <h2>《飘》读书札记</h2>
-        <p class="meta">
-          <span class="tag">小说</span>
-          <span class="tag">美国文学</span>
-          玛格丽特·米切尔 · 2026年06月
-        </p>
-        <p class="desc">以南北战争为背景，写斯嘉丽在时代洪流中的挣扎与成长。旧南方文明「飘」逝，唯有土地与「明天又是新的一天」的生命力长存。</p>
-      </a>
-    </div>
+    <!-- 项目管理 -->
+    <section class="category pm" id="project">
+      <div class="cat-header">
+        <span class="icon">📋</span>
+        <div>
+          <h2>项目管理</h2>
+          <span class="en">Project Management</span>
+        </div>
+      </div>
+      <div class="note-list">
+        <a class="note-card" href="huawei.html">
+          <h3>《华为项目管理之道》</h3>
+          <p class="meta">
+            <span class="tag">管理</span>
+            <span class="tag">方法论</span>
+            华为项目管理能力中心 · 2026年07月
+          </p>
+          <p class="desc">30 年实践总结的「根能力」框架：发展、交付、用将、治理、数智、文化、价值、未来八大篇章，以及交付四零四心、6 步 1 法与价值管理三阶六步。</p>
+        </a>
+        <a class="note-card" href="wuliu.html">
+          <h3>《物流信息系统质量建设模型》</h3>
+          <p class="meta">
+            <span class="tag">物流</span>
+            <span class="tag">质量管理</span>
+            项目实践总结 · 2026年07月
+          </p>
+          <p class="desc">舍弗勒项目实践总结「人机料法环」质量模型，从五维度拆解需求、设计、测试、实施全过程，271 项优化数据揭示质量建设的前移价值。</p>
+        </a>
+      </div>
+    </section>
 
     <footer>—— 持续更新中 · 共 9 篇 · 2026年07月 ——</footer>
   </div>
